@@ -44,5 +44,18 @@ functions:
             curl https://sh.rustup.rs -sSf | sh -s -- -y
             rustup default ${rust_version}
 
+  enable nextest:
+    description: |
+      Install the nextest test runner for running rust tests.
 
+    actions:
+      - command: shell.exec
+        params:
+          script: |
+            set -o errexit
 
+            export RUSTUP_HOME="$PWD/bonsai/rustup"
+            export CARGO_HOME="$PWD/bonsai/cargo"
+            export PATH="$PATH:$CARGO_HOME/bin"
+
+            curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C "$CARGO_HOME/bin"
