@@ -1,0 +1,48 @@
+name: cargo
+functions:
+  run:
+    description: Execute the specified cargo command.
+    params:
+      - name: target_dir
+        description: Directory to execute cargo in.
+      - name: cargo_command
+        description: Cargo command to execute.
+    actions:
+      - command: shell.exec
+        params: 
+          script: |
+            set -o errexit
+
+            export RUSTUP_HOME="$PWD/bonsai/rustup"
+            export CARGO_HOME="$PWD/bonsai/cargo"
+            export PATH="$PATH:$CARGO_HOME/bin"
+
+            cd ${target_dir}
+
+            cargo ${cargo_command}
+
+  install rust:
+    description: |
+      Install rustup, cargo and rust.
+
+      This command needs to be executed before other cargo commands.
+      It may be useful to call it in a "pre" block.
+
+    params:
+      - name: rust_version
+        description: Rust version to install.
+
+    actions:
+      - command: shell.exec
+        params:
+          script: | 
+            set -o errexit
+
+            export RUSTUP_HOME="$PWD/bonsai/rustup"
+            export CARGO_HOME="$PWD/bonsai/cargo"
+            export PATH="$PATH:$CARGO_HOME/bin"
+            curl https://sh.rustup.rs -sSf | sh -s -- -y
+            rustup default {rust_version}
+
+
+

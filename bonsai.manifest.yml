@@ -1,0 +1,5 @@
+bonsai_pots:
+  - name: cargo
+    path: bonsai/cargo.pot.yml
+    description: Work with rust via cargo commands.
+
