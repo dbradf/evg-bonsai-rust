@@ -6,6 +6,7 @@ rust actions in evergreen.
 ## Usage
 
 Example landscape file:
+
 ```yaml
 bonsai:
   - source: github

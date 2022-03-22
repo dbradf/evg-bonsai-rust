@@ -15,7 +15,7 @@ functions:
 
             export RUSTUP_HOME="$PWD/bonsai/rustup"
             export CARGO_HOME="$PWD/bonsai/cargo"
-            export PATH="$PATH:$CARGO_HOME/bin"
+            export PATH="$PATH:$CARGO_HOME/bin:$HOME:/"
 
             cd ${target_dir}
 
